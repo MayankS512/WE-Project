@@ -7,7 +7,6 @@ export default function Home() {
     <>
       <Head>
         <title>Rudiment.</title>
-        <meta name="description" content="Made by Demon." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

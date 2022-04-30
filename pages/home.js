@@ -39,7 +39,6 @@ export default function Home() {
     <div ref={canvas} className='w-full h-full'>
       <Head>
         <title>Rudiment.</title>
-        <meta name="description" content="Made by Demon." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

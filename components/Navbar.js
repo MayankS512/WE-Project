@@ -7,7 +7,7 @@ const Navbar = ({ home, redirect }) => {
   return ( 
   <nav className="mt-10 mr-16 text-xl ">
     <ul className="flex items-center gap-44">
-      {!home && <li className="ml-16 text-4xl"><Link href='/home'>Rudiment.</Link></li>}
+      {!home && <li className="ml-16 text-4xl font-Cinzel"><Link href='/home'>Rudiment.</Link></li>}
       {home && <li className="ml-auto cursor-pointer" onClick={() => redirect('blog')}>Blog</li>}
       {!home && <li className="ml-auto"><Link href="/blog">Blog</Link></li>}
       {home && <li className="cursor-pointer" onClick={() => redirect('about')}>About</li>}
