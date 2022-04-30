@@ -3,9 +3,10 @@ import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import { OrbitControls } from '@react-three/drei'
 import Device from '../three/Device'
-import Curve from '../components/Curve'
+// import Curve from '../components/Curve'
 import HomeContent from '../components/HomeContent'
 import { useRef } from 'react'
+import CurveExp from '../components/CurveExp'
 
 
 export default function Home() {
@@ -52,7 +53,7 @@ export default function Home() {
         </Suspense>
       </Canvas>
 
-      <Curve />
+      <CurveExp />
 
       <HomeContent tryIt={tryIt}/>
       {/* <Navbar /> */}
