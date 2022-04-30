@@ -42,7 +42,7 @@ export default function Device({ mouse, leaveIt, ...props }) {
   useEffect(() => {
     const main = group.current
 
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       gsap.to(main.scale, {
         x: 1.1,
         y: 1.1, 
@@ -52,6 +52,8 @@ export default function Device({ mouse, leaveIt, ...props }) {
       })
       unfold()
     }, 2000)
+
+    return () => clearTimeout(timeout)
   })
 
   const unfold = () => {
