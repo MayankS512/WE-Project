@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 
 const Page = () => {
   return ( 
-    <div className="absolute top-0 w-full h-full overflow-x-hidden text-white">
+    <div className="absolute top-0 w-full h-full overflow-x-hidden dark:text-white">
     <Head>
       <title>Rudiment.</title>
     </Head>
