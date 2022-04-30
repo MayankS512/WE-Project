@@ -6,4 +6,41 @@
   #__next {
     @apply h-[100vh] w-[100vw];
   }
+
+  body {
+    /* dark:bg-[#1a1a1a] dark:text-white  bg-slate-50 text-black */
+    @apply transition-all duration-1000 dark:bg-[#1a1a1a] dark:text-white font-[Nunito];
+  }
+
+  svg {
+    @apply fixed -z-10;
+  }
+
+  #bg {
+    @apply transition-[filter] duration-1000;
+  }
+
+  button {
+    @apply text-[2rem] text-white;
+  }
+}
+
+
+.wrapper {
+  width: 800px;
+  height: 720px;
+  background: #1a1a1a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  gap: 2rem;
+  /* z-index: -20; */
+  /* transition: all 2s ease-in-out; */
+}
+
+.clip {
+  clip-path: url(#svgPath);
+  /* transform: scale(120%); */
 }
