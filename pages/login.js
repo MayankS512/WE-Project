@@ -1,9 +1,8 @@
 import Head from "next/head";
-// import Curve from "../components/Curve";
 import { useRouter } from "next/router";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import CurveExp from "../components/CurveExp";
+import Curve from "../components/Curve";
 import Link from "next/link";
 
 const Login = () => {
@@ -24,7 +23,7 @@ const Login = () => {
         <title>Rudiment.</title>
       </Head>
 
-      <CurveExp />
+      <Curve />
 
       <div className="absolute flex flex-row items-center top-5 left-10">
         <button ref={goback} onClick={() => {router.back()}} className="w-16 h-16 font-serif transition-colors duration-300 scale-0 bg-gray-800 rounded-full shadow-lg hover:bg-gray-700 shadow-gray-900 focus:outline-offset-4 focus:outline-gray-700"> 
