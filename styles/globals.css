@@ -43,7 +43,7 @@
   justify-content: center;
   gap: 2rem;
   /* z-index: -20; */
-  /* transition: all 2s ease-in-out; */
+  /* transition: all 2s ease-out; */
 }
 
 .clip {
