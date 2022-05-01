@@ -41,14 +41,14 @@ const Login = () => {
       </div>
 
       <div className="absolute flex flex-col ml-32 text-center rounded-md shadow-lg right-80 w-96 dark:bg-neutral-700 bg-zinc-100 shadow-black">
-        {Signup && 
+        {signup && 
         <input value={fullname} onChange={(e) => {setFullname(e.target.value)}} type="text" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Full Name" />
         }
         <input value={username} onChange={(e) => {setUsername(e.target.value)}} type="text" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Username" />
-        {Signup && 
+        {signup && 
         <input value={email} onChange={(e) => {setEmail(e.target.value)}} type="text" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Email" />
         }
-        {Signup && 
+        {signup && 
         <input value={password} onChange={(e) => {setPassword(e.target.value)}} type="password" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Password" />
         }
         <input value={confirm} onChange={(e) => {setConfirm(e.target.value)}} type="password" className="px-3 py-2 m-10 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50" placeholder="Confirm Password" />
