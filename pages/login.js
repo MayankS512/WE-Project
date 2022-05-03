@@ -1,20 +1,66 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import Curve from "../components/Curve";
 import Link from "next/link";
+import { AuthContext } from "../context/auth";
+import { storage } from "../firebase";
+import { async } from "@firebase/util";
 
 const Login = () => {
   const goback = useRef()
   const router = useRouter()
-  const [signup, setSignup] = useState(false);
+  const [isSignup, setSignup] = useState(false);
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const {login, signup, user} = useContext(AuthContext);
+ 
+  // const handleClick = async () => {
+  //   // console.log(file);
+  //   try {
+  //     setLoading(true);
+  //     setError("");
+  //     const user = await signup(email, password);
+  //     console.log("signed up");
+  //   } catch (err) {
+  //     console.log("error");
+  //     setError(err.message);
+  //     setTimeout(() => {
+  //       setError("");
+  //     }, 2000);
+  //   }
+  //   setLoading(false);
+  // };
+
+  const handleClick = async() => {
+    try{
+      setLoading(true)
+      setError('')
+      await login(email, password)
+      console.log("loged in")
+    }catch(err){
+      console.log(err)
+      setError(err.message)
+      setTimeout(()=>{
+          setError('')
+      }, 2000)
+    }
+   setLoading(false)
+  }
+
+  useEffect(()=>{
+    if(user){
+        router.push('/')
+    }
+  },[user])
 
   useEffect(() => {
     gsap.to(goback.current, {
@@ -41,19 +87,27 @@ const Login = () => {
       </div>
 
       <div className="absolute flex flex-col ml-32 text-center rounded-md shadow-lg right-80 w-96 dark:bg-neutral-700 bg-zinc-100 shadow-black">
-        {signup && 
+        {isSignup && 
         <input value={fullname} onChange={(e) => {setFullname(e.target.value)}} type="text" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Full Name" />
         }
+        {isSignup && 
         <input value={username} onChange={(e) => {setUsername(e.target.value)}} type="text" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Username" />
-        {signup && 
+        } 
         <input value={email} onChange={(e) => {setEmail(e.target.value)}} type="text" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Email" />
+        <input value={password} onChange={(e) => {setPassword(e.target.value)}} type="password" className="px-3 py-2 m-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Password" />
+        {isSignup &&
+        <input value={confirm} onChange={(e) => {setConfirm(e.target.value)}} type="password" className="px-3 py-2 mx-10 mb-10 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50" placeholder="Confirm Password" />
         }
-        {signup && 
-        <input value={password} onChange={(e) => {setPassword(e.target.value)}} type="password" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Password" />
+
+        <button onClick={handleClick} disabled={loading} className="py-2 mx-10 mb-2 text-xl transition-all duration-300 bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700">{isSignup ? "Signup" : "Login"}</button>
+        {
+          error != '' &&
+          <div className="text-red-600"> {error} </div>
         }
-        <input value={confirm} onChange={(e) => {setConfirm(e.target.value)}} type="password" className="px-3 py-2 m-10 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50" placeholder="Confirm Password" />
-        <button className="py-2 mx-10 mb-2 text-xl transition-all duration-300 bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700">{signup ? "Signup" : "Login"}</button>
-        <div onClick={() => {setSignup(!signup)}} className="mb-8"> {signup ? "Already have an account?" : "Don't have an account?"} <span className="text-blue-600 cursor-pointer">{signup ? "Login" : "Register"}</span></div>
+        <div onClick={() => {setSignup(!isSignup)}} className="mb-8"> {isSignup ? "Already have an account?" : "Don't have an account?"} <span className="text-blue-600 cursor-pointer">{isSignup ? "Login" : "Register"}</span></div>
+        {/* {signup &&
+          <Link href="/forgotpassword"> <div className="text-blue-500">Forgot Password</div></Link>
+        } */}
         <button className="py-2 mx-10 mb-8 text-xl transition-all duration-300 bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700">Register</button>
       </div>
     

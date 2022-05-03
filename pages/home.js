@@ -7,7 +7,6 @@ import HomeContent from '../components/HomeContent'
 import { useRef } from 'react'
 import Curve from '../components/Curve'
 
-
 export default function Home() {
   const mouse = {
     x: -Math.PI/2 + 0.5,
@@ -20,8 +19,6 @@ export default function Home() {
   //     mouse.y = (0.5 - e.clientY/innerHeight) * 2
   //   }
   // }
-
-  
 
   const canvas = useRef()
 
@@ -55,6 +52,7 @@ export default function Home() {
       <Curve />
 
       <HomeContent tryIt={tryIt}/>
+
       {/* <Navbar /> */}
     </div>
   )
