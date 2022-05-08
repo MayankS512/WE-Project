@@ -1,0 +1,52 @@
+/* Cinzel */
+/* @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap'); */
+
+/* Nunito */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  #__next {
+    @apply h-[100vh] w-[100vw];
+  }
+
+  body {
+    /* dark:bg-[#1a1a1a] dark:text-white  bg-slate-50 text-black */
+    @apply transition-all duration-1000 dark:bg-[#1a1a1a] dark:text-white bg-neutral-200 font-Nunito;
+  }
+
+  svg {
+    @apply fixed -z-10;
+  }
+
+  #bg {
+    @apply transition-[filter] duration-1000;
+  }
+
+  button {
+    @apply text-[2rem] text-white;
+  }
+}
+
+
+.wrapper {
+  width: 800px;
+  height: 720px;
+  background: #1a1a1a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  gap: 2rem;
+  /* z-index: -20; */
+  /* transition: all 2s ease-out; */
+}
+
+.clip {
+  clip-path: url(#svgPath);
+  /* transform: scale(120%); */
+}
