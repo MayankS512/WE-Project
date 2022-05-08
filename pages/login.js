@@ -4,17 +4,62 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import Curve from "../components/Curve";
 import Link from "next/link";
+import { useSignup } from "../hooks/useSignup";
+import { useLogin } from "../hooks/useLogin"
+import { useAuthContext } from "../hooks/useAuthContext";
+
+const InputField = ({ input, setInput, type = "text", placeholder = "Enter Value", register = true }) => {
+  return (
+    <>
+      {register && 
+      <input 
+        value={input} 
+        onChange={(e) => {setInput(e.target.value)}} 
+        type={type} 
+        className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50" 
+        placeholder={placeholder} 
+      />
+      }
+    </>
+  )
+}
+
+const Button = ({ children, add = "", onClick = () => {} }) => {
+  return (
+    <button onClick={onClick} className={`py-2 mx-10 mt-8 text-xl transition-all duration-300 bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700 ${add}`}>{children}</button>
+  )
+}
 
 const Login = () => {
   const goback = useRef()
   const router = useRouter()
-  const [signup, setSignup] = useState(false);
+  const [register, setRegister] = useState(false);
+  const { user } = useAuthContext()
+
+  // Form States
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
+  // Signup Creds
+  const {error: rerror, signup} = useSignup();
+
+  // Login Creds
+  const {error: lerror, login } = useLogin();
+
+  const handleSubmit = () => {
+    if (register) {
+      signup(email, password)
+    } else {
+      login(email, password)
+    }
+  }
+
+  useEffect(() => {
+    if (user) router.push('/')
+  }, [user])
 
   useEffect(() => {
     gsap.to(goback.current, {
@@ -30,7 +75,7 @@ const Login = () => {
         <title>Rudiment.</title>
       </Head>
 
-      <Curve />
+      {/* <Curve /> */}
 
       <div className="absolute flex flex-row items-center top-5 left-10">
 
@@ -41,20 +86,16 @@ const Login = () => {
       </div>
 
       <div className="absolute flex flex-col ml-32 text-center rounded-md shadow-lg right-80 w-96 dark:bg-neutral-700 bg-zinc-100 shadow-black">
-        {signup && 
-        <input value={fullname} onChange={(e) => {setFullname(e.target.value)}} type="text" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Full Name" />
-        }
-        <input value={username} onChange={(e) => {setUsername(e.target.value)}} type="text" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Username" />
-        {signup && 
-        <input value={email} onChange={(e) => {setEmail(e.target.value)}} type="text" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Email" />
-        }
-        {signup && 
-        <input value={password} onChange={(e) => {setPassword(e.target.value)}} type="password" className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 " placeholder="Password" />
-        }
-        <input value={confirm} onChange={(e) => {setConfirm(e.target.value)}} type="password" className="px-3 py-2 m-10 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50" placeholder="Confirm Password" />
-        <button className="py-2 mx-10 mb-2 text-xl transition-all duration-300 bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700">{signup ? "Signup" : "Login"}</button>
-        <div onClick={() => {setSignup(!signup)}} className="mb-8"> {signup ? "Already have an account?" : "Don't have an account?"} <span className="text-blue-600 cursor-pointer">{signup ? "Login" : "Register"}</span></div>
-        <button className="py-2 mx-10 mb-8 text-xl transition-all duration-300 bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700">Register</button>
+        {rerror && <p className="text-center text-red-500">{rerror}</p>}
+        {lerror && <p className="text-center text-red-500">{lerror}</p>}
+        <InputField input={fullname} setInput={setFullname} placeholder="Full Name" register={register} />
+        <InputField input={username} setInput={setUsername} placeholder="Username" />
+        <InputField input={email} setInput={setEmail} type="email" placeholder="Email" register={register} />
+        <InputField input={password} setInput={setPassword} type="password" placeholder="Password" />
+        <InputField input={confirm} setInput={setConfirm} type="password" placeholder="Confirm Password" register={register} />
+        <Button onClick={handleSubmit}>{register ? "Register" : "Login"}</Button>
+        <div className="mt-2" onClick={() => {setRegister(!register)}}>{register ? "Already have an account?" : "Don't have an account?"} <span className="text-blue-600 transition-colors duration-150 cursor-pointer hover:text-blue-400 dark:text-indigo-300 dark:hover:text-indigo-200">{register ? "Login" : "Register"}!</span></div>
+        <Button add="mb-8">Sign In With Google</Button>
       </div>
     
     </div>

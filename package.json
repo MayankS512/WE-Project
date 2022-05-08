@@ -1,8 +1,8 @@
 {
   "name": "rudiment",
   "authors": [
-    "Demon",
-    "Mayank Singh"
+    "Mayank Singh",
+    "Rajat Gupta"
   ],
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "@heroicons/react": "^1.0.6",
     "@react-three/drei": "^8.8.1",
     "@react-three/fiber": "^7.0.26",
+    "firebase": "^9.8.0",
     "gsap": "^3.9.1",
     "next": "^12.1.0",
     "react": "17.0.2",
