@@ -1,16 +1,32 @@
 import { useState } from 'react'
-import { auth } from '../firebase/config,js'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth, db } from '../firebase/config.js'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useAuthContext } from '../hooks/useAuthContext'
+import { setDoc, doc } from 'firebase/firestore'
 
 export const useSignup = () => {
   const [error, setError] = useState(null)
   const { dispatch } = useAuthContext()
 
-  const signup = (email, password) => {
+  const signup = async (email, password, username) => {
     setError(null)
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => {
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then(async (res) => {
+        // Update Profile
+        await updateProfile(res.user, {
+          displayName: username, 
+          photoURL: `https://avatars.dicebear.com/api/bottts/${username.toLowerCase()}.svg`
+        })
+
+        // Create User Document
+        const ref = doc(db, 'users', res.user.uid)
+        await setDoc(ref, {
+          status: true,
+          username,
+          avatar: `https://avatars.dicebear.com/api/bottts/${username.toLowerCase()}.svg`
+        })
+        
+        // Dispatch Login Action
         dispatch({ type: 'LOGIN', payload: res.user })
       })
       .catch((err) => {

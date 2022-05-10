@@ -93,7 +93,7 @@ const HomeContent = ({ tryIt }) => {
     <Navbar home redirect={redirect} />
     <div ref={header} className="ml-16 -mt-[2.6rem]">
       <h1 ref={rudiment} className="text-4xl opacity-100 font-Cinzel">Rudiment.</h1>
-      <p ref={para} className="mt-2 ml-2 text-3xl opacity-0">The new way to get sh*t done.</p>
+      <p ref={para} className="mt-2 ml-2 text-3xl opacity-0">A new way to communicate.</p>
       <button ref={button} onClick={tryIt} className="px-6 py-2 mt-10 ml-2 text-2xl transition-all duration-500 rounded shadow opacity-0 hover:shadow-lg hover:shadow-red-900 shadow-rose-700 bg-gradient-to-tr from-rose-800 to-red-300">Try It!</button>
     </div>
   </div> 

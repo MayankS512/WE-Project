@@ -26,16 +26,23 @@
     @apply transition-[filter] duration-1000;
   }
 
+  #messages::-webkit-scrollbar {
+    @apply w-6 rounded-full bg-zinc-800;
+  }
+
+  #messages::-webkit-scrollbar-thumb {
+    @apply border-8 border-solid rounded-full bg-zinc-700 border-zinc-800;
+  }
+
   button {
-    @apply text-[2rem] text-white;
+    @apply text-white select-none
   }
 }
-
 
 .wrapper {
   width: 800px;
   height: 720px;
-  background: #1a1a1a;
+  /* background: #1a1a1a; */
   color: white;
   display: flex;
   flex-direction: column;

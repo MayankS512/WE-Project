@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Curve from "../components/Curve";
 import Link from "next/link";
 import { useSignup } from "../hooks/useSignup";
+import { useGoogle } from "../hooks/useGoogle";
 import { useLogin } from "../hooks/useLogin"
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -24,20 +25,20 @@ const InputField = ({ input, setInput, type = "text", placeholder = "Enter Value
   )
 }
 
-const Button = ({ children, add = "", onClick = () => {} }) => {
+const Button = ({ children, add = "", onClick = () => {}, type = "button" }) => {
   return (
-    <button onClick={onClick} className={`py-2 mx-10 mt-8 text-xl transition-all duration-300 bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700 ${add}`}>{children}</button>
+    <input type={type} onClick={onClick} className={`py-2 mx-10 mt-8 text-xl transition-all duration-300 bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700 ${add}`} value={children}></input>
   )
 }
 
 const Login = () => {
   const goback = useRef()
   const router = useRouter()
-  const [register, setRegister] = useState(false);
+  const [register, setRegister] = useState(false)
+  const [error, setError] = useState(null)
   const { user } = useAuthContext()
 
   // Form States
-  const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,13 +50,39 @@ const Login = () => {
   // Login Creds
   const {error: lerror, login } = useLogin();
 
-  const handleSubmit = () => {
+  // Google Login
+  const {error: gerror, glogin} = useGoogle();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (register) {
-      signup(email, password)
+      if (password !== confirm) {
+        setError('Passwords do not match')
+        return
+      }
+      signup(email, password, username)
     } else {
       login(email, password)
     }
   }
+
+  useEffect(() => {
+    if (rerror) { 
+      setError(rerror)
+    }
+  }, [rerror])
+
+  useEffect(() => {
+    if (lerror) {
+      setError(lerror)
+    }
+  }, [lerror])
+
+  useEffect(() => {
+    if (gerror) {
+      setError(gerror)
+    }
+  }, [gerror])
 
   useEffect(() => {
     if (user) router.push('/')
@@ -69,6 +96,7 @@ const Login = () => {
       ease: 'power2.out'
     })
   })
+  
   return ( 
     <div className="absolute top-0 flex items-center justify-center w-full h-full overflow-x-hidden">
       <Head>
@@ -85,18 +113,20 @@ const Login = () => {
       <h1 className="ml-10 text-4xl lg:text-8xl font-Cinzel"><Link href='/home'>Rudiment.</Link></h1>
       </div>
 
-      <div className="absolute flex flex-col ml-32 text-center rounded-md shadow-lg right-80 w-96 dark:bg-neutral-700 bg-zinc-100 shadow-black">
-        {rerror && <p className="text-center text-red-500">{rerror}</p>}
-        {lerror && <p className="text-center text-red-500">{lerror}</p>}
-        <InputField input={fullname} setInput={setFullname} placeholder="Full Name" register={register} />
-        <InputField input={username} setInput={setUsername} placeholder="Username" />
-        <InputField input={email} setInput={setEmail} type="email" placeholder="Email" register={register} />
+      <form onSubmit={handleSubmit} className="absolute flex flex-col ml-32 text-center rounded-md shadow-lg right-80 w-96 dark:bg-neutral-700 bg-zinc-100 shadow-black">
+        <InputField input={username} setInput={setUsername} placeholder="Username" register={register} />
+        <InputField input={email} setInput={setEmail} type="email" placeholder="Email" />
         <InputField input={password} setInput={setPassword} type="password" placeholder="Password" />
         <InputField input={confirm} setInput={setConfirm} type="password" placeholder="Confirm Password" register={register} />
-        <Button onClick={handleSubmit}>{register ? "Register" : "Login"}</Button>
+        <Button type="submit" onClick={handleSubmit}>{register ? "Register" : "Login"}</Button>
         <div className="mt-2" onClick={() => {setRegister(!register)}}>{register ? "Already have an account?" : "Don't have an account?"} <span className="text-blue-600 transition-colors duration-150 cursor-pointer hover:text-blue-400 dark:text-indigo-300 dark:hover:text-indigo-200">{register ? "Login" : "Register"}!</span></div>
-        <Button add="mb-8">Sign In With Google</Button>
-      </div>
+        <Button onClick={glogin} add="mb-4">Sign In With Google</Button>
+
+        {/* {rerror && <p className="text-center text-red-500">{rerror}</p>}
+        {lerror && <p className="text-center text-red-500">{lerror}</p>} */}
+        {error && <p className="text-center text-red-500">{error}</p>}
+        <div className="mt-4"></div>
+      </form>
     
     </div>
    );
