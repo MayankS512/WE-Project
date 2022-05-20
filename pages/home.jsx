@@ -1,38 +1,33 @@
 import Head from 'next/head'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, Environment, useDetectGPU } from '@react-three/drei'
 import Device from '../three/Device'
 import HomeContent from '../components/HomeContent'
 import { useRef } from 'react'
 import Curve from '../components/Curve'
+import ExperimentalCurves from '../components/ExperimentalCurves'
 
+// Work out some way to use useDetectGPU for lower end devices.
+// Enforce SSG and SSR where necessary
 
-export default function Home() {
-  const mouse = {
-    x: -Math.PI/2 + 0.5,
-    y: 0
-  }
-  
-  // const mouseMove = (e) => {
-  //   if (window) {
-  //     mouse.x = -Math.PI/2 + (0.5 - e.clientX/innerWidth) * 2
-  //     mouse.y = (0.5 - e.clientY/innerHeight) * 2
-  //   }
-  // }
+// DONE (Maybe): Optimize Curve for rendering
+// DONE: Add responsiveness to the whole site
+// DONE: Replace GSAP with Framer Motion, EXCEPTION: Original Curve.js which may be needed in future!
 
-  
-
+export default function Home() {  
   const canvas = useRef()
 
   const tryIt = () => {
     canvas.current.children[0].classList.remove('-z-[1]')
     canvas.current.children[0].classList.add('z-10')
+    canvas.current.children[1].classList.add('blur-sm')
   }
 
   const leaveIt = () => {
     canvas.current.children[0].classList.remove('z-10')
     canvas.current.children[0].classList.add('-z-[1]')
+    canvas.current.children[1].classList.remove('blur-sm')
   }
 
   return (
@@ -42,20 +37,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* -z-[1] */}
       <Canvas className='fixed -z-[1]'>
-        {/* <color attach="background" args={["#030305"]} /> */}
-        <ambientLight intensity={0.4} />
-        <pointLight intensity={0.7} position={[2, 3, 4]} />
+        <pointLight intensity={0.7} position={[-2, 3, -4]} />
         <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={false} enablePan={false} />
         <Suspense fallback={null}>
-          <Device mouse={mouse} leaveIt={leaveIt}/>
+          <Device leaveIt={leaveIt}/>
+          <Environment preset="city" />
         </Suspense>
       </Canvas>
 
-      <Curve />
+      {/* <Curve /> */}
 
       <HomeContent tryIt={tryIt}/>
       {/* <Navbar /> */}
+
+      <ExperimentalCurves />
     </div>
   )
 }

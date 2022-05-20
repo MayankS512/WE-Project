@@ -1,19 +1,25 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import Curve from "../components/Curve";
 import Link from "next/link";
 import { useSignup } from "../hooks/useSignup";
 import { useGoogle } from "../hooks/useGoogle";
 import { useLogin } from "../hooks/useLogin"
 import { useAuthContext } from "../hooks/useAuthContext";
+import ExperimentalCurves from "../components/ExperimentalCurves";
+
+// OPTIOANL: Create a separate reusable modal for login and register.
 
 const InputField = ({ input, setInput, type = "text", placeholder = "Enter Value", register = true }) => {
   return (
     <>
       {register && 
-      <input 
+      <motion.input
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        transition={{duration: 0.2}}
         value={input} 
         onChange={(e) => {setInput(e.target.value)}} 
         type={type} 
@@ -32,7 +38,6 @@ const Button = ({ children, add = "", onClick = () => {}, type = "button" }) => 
 }
 
 const Login = () => {
-  const goback = useRef()
   const router = useRouter()
   const [register, setRegister] = useState(false)
   const [error, setError] = useState(null)
@@ -87,33 +92,24 @@ const Login = () => {
   useEffect(() => {
     if (user) router.push('/')
   }, [user])
-
-  useEffect(() => {
-    gsap.to(goback.current, {
-      scale: 1,
-      rotate: '720deg',
-      duration: 1.5,
-      ease: 'power2.out'
-    })
-  })
   
   return ( 
-    <div className="absolute top-0 flex items-center justify-center w-full h-full overflow-x-hidden">
+    <div className="absolute top-0 flex items-center justify-center w-full h-full">
       <Head>
         <title>Rudiment.</title>
       </Head>
 
       {/* <Curve /> */}
 
-      <div className="absolute flex flex-row items-center top-5 left-10">
-
-      <button ref={goback} onClick={() => {router.back()}} className="w-16 h-16 font-serif transition-colors duration-300 scale-0 bg-gray-800 rounded-full shadow-lg hover:bg-gray-700 shadow-gray-900 focus:outline-offset-4 focus:outline-gray-700"> 
-      &larr;
-      </button>
-      <h1 className="ml-10 text-4xl lg:text-8xl font-Cinzel"><Link href='/home'>Rudiment.</Link></h1>
+      <div className="absolute flex flex-row items-center sm:top-5 top-1 left-2 sm:left-10">
+        {/* sm:shadow-gray-900 sm:shadow-lg */}
+        <motion.button initial={{scale: 0, rotate: 0}} animate={{scale: 1, rotate: 360}} transition={{duration: 1}} onClick={() => {router.back()}} className="w-16 h-16 font-serif text-3xl font-bold transition-colors duration-300 scale-0 rounded-full sm:bg-gray-800 sm:text-xl sm:hover:bg-gray-700 sm:focus:outline-offset-4 sm:focus:outline-gray-700 sm:font-normal"> 
+        &larr;
+        </motion.button>
+        <h1 className="text-4xl select-none sm:ml-10 sm:text-6xl lg:text-8xl font-Cinzel"><Link href='/home'>Rudiment.</Link></h1>
       </div>
 
-      <form onSubmit={handleSubmit} className="absolute flex flex-col ml-32 text-center rounded-md shadow-lg right-80 w-96 dark:bg-neutral-700 bg-zinc-100 shadow-black">
+      <form onSubmit={handleSubmit} className="absolute flex flex-col w-full max-w-md text-center rounded-md xl:right-80 sm:shadow-lg sm:w-96 dark:sm:bg-neutral-700 sm:bg-zinc-100 shadow-black">
         <InputField input={username} setInput={setUsername} placeholder="Username" register={register} />
         <InputField input={email} setInput={setEmail} type="email" placeholder="Email" />
         <InputField input={password} setInput={setPassword} type="password" placeholder="Password" />
@@ -128,6 +124,7 @@ const Login = () => {
         <div className="mt-4"></div>
       </form>
     
+      <ExperimentalCurves />
     </div>
    );
 }

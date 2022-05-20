@@ -15,7 +15,7 @@
 
   body {
     /* dark:bg-[#1a1a1a] dark:text-white  bg-slate-50 text-black */
-    @apply transition-all duration-1000 dark:bg-[#1a1a1a] dark:text-white bg-neutral-200 font-Nunito;
+    @apply transition-all duration-1000 dark:bg-[#1a1a1a]  dark:text-white bg-neutral-200 font-Nunito;
   }
 
   svg {
@@ -39,19 +39,12 @@
   }
 }
 
-.wrapper {
+/* .wrapper {
   width: 800px;
   height: 720px;
-  /* background: #1a1a1a; */
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
-  gap: 2rem;
-  /* z-index: -20; */
-  /* transition: all 2s ease-out; */
-}
+  
+  z-index: -20;
+} */
 
 .clip {
   clip-path: url(#svgPath);

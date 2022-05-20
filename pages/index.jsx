@@ -6,6 +6,20 @@ import Dashboard from '../components/Dashboard';
 import Members from '../components/Members';
 import Sidebar from '../components/Sidebar';
 
+// Work out responsiveness and add a loading screen
+// Implement groups / chatrooms
+// Implement user profile
+// Implement user settings
+// Implement user notifications
+// Implement user search
+
+// OPTIONAL
+// Implement file sharing
+// Implement voice calls
+// Implement video calls
+// Implement screenshare
+
+
 export default function Home() {
   const router = useRouter()
   const { user, authIsReady } = useAuthContext()
