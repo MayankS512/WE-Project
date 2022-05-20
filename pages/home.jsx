@@ -52,7 +52,7 @@ export default function Home() {
       <HomeContent tryIt={tryIt}/>
       {/* <Navbar /> */}
 
-      <ExperimentalCurves />
+      {/* <ExperimentalCurves /> */}
     </div>
   )
 }

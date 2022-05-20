@@ -124,7 +124,7 @@ const Login = () => {
         <div className="mt-4"></div>
       </form>
     
-      <ExperimentalCurves />
+      {/* <ExperimentalCurves /> */}
     </div>
    );
 }

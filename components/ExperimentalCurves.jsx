@@ -1,10 +1,21 @@
 import { motion } from 'framer-motion'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 motion
 
 const ExperimentalCurves = () => {
+  const vid = useRef(null)
+  useEffect(() => {
+    const unsub = setInterval(() => {
+      if (vid) vid.current.play()
+      if (vid.current.currentTime != 0) return () => unsub();
+    }, 500)
+
+    return () => unsub()
+  }, [])
   return (
-    <motion.video initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 4, delay: 0.5}} src="/test.mp4" playsInline autoPlay loop height="100%" className="fixed top-0 left-0 -z-10 mix-blend-lighten blur-[100px]"/>
+      <div className='blur-[100px] mix-blend-lighten -z-20 fixed top-0 left-0 w-screen h-screen'>
+        <motion.video ref={vid} initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 4, delay: 0.5}} disablePictureInPicture disableRemotePlayback preload="auto" src="/test60.mp4" autoPlay loop />
+      </div>
   )
 }
 
