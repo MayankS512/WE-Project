@@ -17,9 +17,8 @@ export const useGoogle = () => {
       await setDoc(ref, {
         status: true,
         username: res.user.displayName,
-        avatar: res.user.photoURL
+        avatar: res.user.photoURL,
       })
-
       dispatch({ type: 'LOGIN', payload: res.user })
     })
     .catch((err) => {

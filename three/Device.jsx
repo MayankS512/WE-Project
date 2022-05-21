@@ -3,7 +3,6 @@ import * as THREE from 'three'
 import { motion } from 'framer-motion-3d'
 import { Html, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import DeviceContent from '../components/DeviceContent'
 
 const screenVariants = {
   initial: {
@@ -204,7 +203,6 @@ export default function Device({ leaveIt, ...props }) {
             initial="initial"
             animate={deviceState}
             src="https://rudiment.vercel.app/login" 
-            // src="http://localhost:3000/login" 
           />
         </Html>
       </motion.mesh>

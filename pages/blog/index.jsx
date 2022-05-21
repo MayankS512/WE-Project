@@ -2,7 +2,6 @@ import Head from "next/head";
 import Navbar from "../../components/Navbar";
 
 // Connect with firebase and add some data
-
 const data = [1, 2, 3, 4]
 
 const Page = () => {

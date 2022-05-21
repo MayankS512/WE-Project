@@ -1,6 +1,5 @@
 module.exports = {
   webpack(config, { webpack, dev, isServer }) {
-
     // audio support
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g)$/i,

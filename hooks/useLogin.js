@@ -3,6 +3,7 @@ import { doc, updateDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { auth, db } from '../firebase/config.js'
 import { useAuthContext } from '../hooks/useAuthContext'
+import { useCollection } from './useCollection.js'
 
 export const useLogin = () => {
   const [error, setError] = useState(null)

@@ -2,13 +2,12 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import Curve from "../components/Curve";
 import Link from "next/link";
 import { useSignup } from "../hooks/useSignup";
 import { useGoogle } from "../hooks/useGoogle";
 import { useLogin } from "../hooks/useLogin"
+import { ArrowNarrowLeftIcon, ChevronLeftIcon } from "@heroicons/react/solid"
 import { useAuthContext } from "../hooks/useAuthContext";
-import ExperimentalCurves from "../components/ExperimentalCurves";
 
 // OPTIOANL: Create a separate reusable modal for login and register.
 
@@ -94,22 +93,20 @@ const Login = () => {
   }, [user])
   
   return ( 
-    <div className="absolute top-0 flex items-center justify-center w-full h-full">
+    <div className="absolute top-0 flex items-center justify-center w-full h-full min-h-fit">
       <Head>
         <title>Rudiment.</title>
       </Head>
 
-      {/* <Curve /> */}
-
       <div className="absolute flex flex-row items-center sm:top-5 top-1 left-2 sm:left-10">
         {/* sm:shadow-gray-900 sm:shadow-lg */}
-        <motion.button initial={{scale: 0, rotate: 0}} animate={{scale: 1, rotate: 360}} transition={{duration: 1}} onClick={() => {router.back()}} className="w-16 h-16 font-serif text-3xl font-bold transition-colors duration-300 scale-0 rounded-full sm:bg-gray-800 sm:text-xl sm:hover:bg-gray-700 sm:focus:outline-offset-4 sm:focus:outline-gray-700 sm:font-normal"> 
-        &larr;
+        <motion.button initial={{scale: 0, rotate: 0}} animate={{scale: 1, rotate: 360}} transition={{duration: 1}} onClick={() => {router.back()}} className="w-16 h-16 flex items-center justify-center font-serif text-3xl font-bold transition-colors duration-300 scale-0 rounded-full sm:bg-gray-800 sm:text-xl sm:hover:bg-gray-700 sm:focus:outline-offset-4 sm:focus:outline-gray-700 sm:font-normal"> 
+          <ArrowNarrowLeftIcon className="relative w-8 h-8"/>
         </motion.button>
         <h1 className="text-4xl select-none sm:ml-10 sm:text-6xl lg:text-8xl font-Cinzel"><Link href='/home'>Rudiment.</Link></h1>
       </div>
 
-      <form onSubmit={handleSubmit} className="absolute flex flex-col w-full max-w-md text-center rounded-md xl:right-80 sm:shadow-lg sm:w-96 dark:sm:bg-neutral-700 sm:bg-zinc-100 shadow-black">
+      <form onSubmit={handleSubmit} className="absolute flex flex-col w-full max-w-md text-center top-[29%] mb-10 rounded-md xl:right-80 sm:shadow-lg sm:w-96 dark:sm:bg-neutral-700 sm:bg-zinc-100 shadow-black ">
         <InputField input={username} setInput={setUsername} placeholder="Username" register={register} />
         <InputField input={email} setInput={setEmail} type="email" placeholder="Email" />
         <InputField input={password} setInput={setPassword} type="password" placeholder="Password" />
@@ -118,13 +115,9 @@ const Login = () => {
         <div className="mt-2" onClick={() => {setRegister(!register)}}>{register ? "Already have an account?" : "Don't have an account?"} <span className="text-blue-600 transition-colors duration-150 cursor-pointer hover:text-blue-400 dark:text-indigo-300 dark:hover:text-indigo-200">{register ? "Login" : "Register"}!</span></div>
         <Button onClick={glogin} add="mb-4">Sign In With Google</Button>
 
-        {/* {rerror && <p className="text-center text-red-500">{rerror}</p>}
-        {lerror && <p className="text-center text-red-500">{lerror}</p>} */}
         {error && <p className="text-center text-red-500">{error}</p>}
         <div className="mt-4"></div>
       </form>
-    
-      {/* <ExperimentalCurves /> */}
     </div>
    );
 }

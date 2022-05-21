@@ -23,9 +23,11 @@ export const useSignup = () => {
         await setDoc(ref, {
           status: true,
           username,
-          avatar: `https://avatars.dicebear.com/api/bottts/${username.toLowerCase()}.svg`
+          avatar: `https://avatars.dicebear.com/api/bottts/${username.toLowerCase()}.svg`,
+          servers: [],
+          last: ''
         })
-        
+    
         // Dispatch Login Action
         dispatch({ type: 'LOGIN', payload: res.user })
       })

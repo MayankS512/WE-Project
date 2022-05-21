@@ -5,8 +5,6 @@ import { OrbitControls, Environment, useDetectGPU } from '@react-three/drei'
 import Device from '../three/Device'
 import HomeContent from '../components/HomeContent'
 import { useRef } from 'react'
-import Curve from '../components/Curve'
-import ExperimentalCurves from '../components/ExperimentalCurves'
 
 // Work out some way to use useDetectGPU for lower end devices.
 // Enforce SSG and SSR where necessary
@@ -37,22 +35,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* -z-[1] */}
-      <Canvas className='fixed -z-[1]'>
-        <pointLight intensity={0.7} position={[-2, 3, -4]} />
-        <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={false} enablePan={false} />
-        <Suspense fallback={null}>
+      <HomeContent tryIt={tryIt}/>
+
+      <Suspense fallback={null}>
+        <Canvas className='fixed -z-[1]'> 
+          <pointLight intensity={0.7} position={[-2, 3, -4]} />
+          <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={false} enablePan={false} />
           <Device leaveIt={leaveIt}/>
           <Environment preset="city" />
-        </Suspense>
-      </Canvas>
-
-      {/* <Curve /> */}
-
-      <HomeContent tryIt={tryIt}/>
-      {/* <Navbar /> */}
-
-      {/* <ExperimentalCurves /> */}
+        </Canvas>
+      </Suspense>
     </div>
   )
 }

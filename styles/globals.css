@@ -27,26 +27,18 @@
   }
 
   #messages::-webkit-scrollbar {
-    @apply w-6 rounded-full bg-zinc-800;
+    @apply w-4 rounded-full bg-zinc-800;
   }
 
   #messages::-webkit-scrollbar-thumb {
-    @apply border-8 border-solid rounded-full bg-zinc-700 border-zinc-800;
+    @apply border-solid rounded-full border-[5px] bg-zinc-700 border-zinc-800;
+  }
+
+  .none::-webkit-scrollbar {
+    @apply w-0 h-0;
   }
 
   button {
     @apply text-white select-none
   }
-}
-
-/* .wrapper {
-  width: 800px;
-  height: 720px;
-  
-  z-index: -20;
-} */
-
-.clip {
-  clip-path: url(#svgPath);
-  /* transform: scale(120%); */
 }
