@@ -19,7 +19,7 @@ const Menu = () => {
   return (
     <div className='flex flex-col items-center w-full'>
     <ChevronDownIcon onClick={() => {setActive(!active)}} className='relative z-20 w-8 h-8 p-1 m-1 -mb-1 rounded-full hover:bg-zinc-500' />
-    {active && (<div className='flex flex-col items-center w-full'>
+    {active && (<div className='flex flex-col items-center w-full mt-2'>
       <form className='flex flex-col justify-center w-full pt-2 items-middle' onSubmit={handleSubmit}>
         <input className='w-full p-2 rounded-md outline-none bg-zinc-600 placeholder:text-zinc-400' placeholder='Server ID' value={name} onChange={(e)=>setName(e.target.value)}/>
         <button className='mt-2 ml-2' onClick={handleSubmit}>Join Server</button>

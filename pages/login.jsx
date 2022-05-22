@@ -100,7 +100,7 @@ const Login = () => {
 
       <div className="absolute flex flex-row items-center sm:top-5 top-1 left-2 sm:left-10">
         {/* sm:shadow-gray-900 sm:shadow-lg */}
-        <motion.button initial={{scale: 0, rotate: 0}} animate={{scale: 1, rotate: 360}} transition={{duration: 1}} onClick={() => {router.back()}} className="w-16 h-16 flex items-center justify-center font-serif text-3xl font-bold transition-colors duration-300 scale-0 rounded-full sm:bg-gray-800 sm:text-xl sm:hover:bg-gray-700 sm:focus:outline-offset-4 sm:focus:outline-gray-700 sm:font-normal"> 
+        <motion.button initial={{scale: 0, rotate: 0}} animate={{scale: 1, rotate: 360}} transition={{duration: 1}} onClick={() => {router.back()}} className="flex items-center justify-center w-16 h-16 font-serif text-3xl font-bold transition-colors duration-300 scale-0 rounded-full sm:bg-gray-800 sm:text-xl sm:hover:bg-gray-700 sm:focus:outline-offset-4 sm:focus:outline-gray-700 sm:font-normal"> 
           <ArrowNarrowLeftIcon className="relative w-8 h-8"/>
         </motion.button>
         <h1 className="text-4xl select-none sm:ml-10 sm:text-6xl lg:text-8xl font-Cinzel"><Link href='/home'>Rudiment.</Link></h1>
@@ -113,7 +113,7 @@ const Login = () => {
         <InputField input={confirm} setInput={setConfirm} type="password" placeholder="Confirm Password" register={register} />
         <Button type="submit" onClick={handleSubmit}>{register ? "Register" : "Login"}</Button>
         <div className="mt-2" onClick={() => {setRegister(!register)}}>{register ? "Already have an account?" : "Don't have an account?"} <span className="text-blue-600 transition-colors duration-150 cursor-pointer hover:text-blue-400 dark:text-indigo-300 dark:hover:text-indigo-200">{register ? "Login" : "Register"}!</span></div>
-        <Button onClick={glogin} add="mb-4">Sign In With Google</Button>
+        {/* <Button onClick={glogin} add="mb-4">Sign In With Google</Button> */}
 
         {error && <p className="text-center text-red-500">{error}</p>}
         <div className="mt-4"></div>

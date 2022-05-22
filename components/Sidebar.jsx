@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Groups from './Groups'
 import UserStatus from './UserStatus'
-import { PlusIcon } from '@heroicons/react/solid'
+import { PlusIcon, XIcon } from '@heroicons/react/solid'
 import { useCreateServer } from '../hooks/useCreateServer'
 
-const Sidebar = () => {
+const Sidebar = ({ handleShow }) => {
   const {create, error} =  useCreateServer()
   const [group, setGroup] = useState(false)
+
   const [name, setName] = useState('')
 
   const handleSubmit = (e) => {
@@ -16,7 +17,8 @@ const Sidebar = () => {
   }
   
   return (
-    <div className='flex-col hidden w-full h-full overflow-auto bg-neutral-300 md:flex dark:bg-zinc-800'>
+    <div id='sidebar' className='absolute flex flex-col w-full h-full max-w-sm overflow-auto md:max-w-xl md:left-0 md:relative bg-neutral-300 dark:bg-zinc-800'>
+      <XIcon onClick={handleShow} className='absolute top-0 right-0 z-20 w-10 h-10 p-2 md:hidden'/>
       <UserStatus />
       <Groups />
       <div onClick={() => setGroup(true)} className="flex flex-col items-center justify-center w-full py-2 mt-2 hover:bg-zinc-600 bg-zinc-700">
