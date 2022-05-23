@@ -9,8 +9,8 @@ import { db } from '../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
-// Work out responsiveness and add a loading screen
-// Implement groups / chatrooms
+// DONE: Work out responsiveness and add a loading screen
+// DONE: Implement groups / chatrooms
 // Implement user profile
 // Implement user settings
 // Implement user notifications
