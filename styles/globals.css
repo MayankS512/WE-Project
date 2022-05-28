@@ -26,11 +26,11 @@
     @apply transition-[filter] duration-1000;
   }
 
-  #messages::-webkit-scrollbar {
+  #messages::-webkit-scrollbar, .custom::-webkit-scrollbar {
     @apply w-4 rounded-full bg-zinc-800;
   }
 
-  #messages::-webkit-scrollbar-thumb {
+  #messages::-webkit-scrollbar-thumb, .custom::-webkit-scrollbar-thumb {
     @apply border-solid rounded-full border-[5px] bg-zinc-700 border-zinc-800;
   }
 

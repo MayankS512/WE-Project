@@ -11,10 +11,10 @@ const Members = () => {
       {/* <h2 className="w-full p-2 text-lg text-center uppercase bg-zinc-700">Online</h2> */}
       <div className="flex flex-col items-center w-full h-full overflow-x-hidden overflow-y-auto">
         {users && users.map((user) => {
-          return user.status && <User key={user.id} user={user} status="bg-zinc-700" />
+          return user.status && <User key={user.id} user={user} status="dark:bg-zinc-700" />
         })}
         {users && users.map((user) => {
-          return !user.status && <User key={user.id} user={user} />
+          return !user.status && <User key={user.id} user={user} status="bg-zinc-700 dark:bg-transparent" />
         })}
       </div>
     </div>

@@ -23,7 +23,7 @@ const Rudiment = ({ home }) => {
           animate={{
             fontSize: '8rem',
             marginTop: '32rem',
-            marginLeft: '6rem',
+            marginLeft: '6rem'
           }}
           transition={{
             delay: 1,
@@ -41,7 +41,7 @@ const Rudiment = ({ home }) => {
 
 const sidenavVariants = {
   leave: { x: '100%' },
-  enter: { x: 0}
+  enter: { x: 0 }
 }
 
 const Navbar = ({ home, redirect }) => {
@@ -54,7 +54,7 @@ const Navbar = ({ home, redirect }) => {
       <Rudiment home={home} /> 
       <li className="ml-auto"><Link href="/blog">Blog</Link></li>
       <li><Link href="/about">About</Link></li>
-      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl transition-all duration-500 rounded bg-[#1a1a1a] shadow hover:bg-indigo-800 shadow-indigo-700">Login</button></li>
+      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl transition-all duration-500 rounded dark:bg-indigo-800">Login</button></li>
     </ul>
     
     <ul className="fixed flex items-center w-screen sm:hidden">
@@ -70,7 +70,7 @@ const Navbar = ({ home, redirect }) => {
       <ul className="flex flex-col mt-32 gap-28">
       <li className="text-center"><Link href="/blog">Blog</Link></li>
       <li className="text-center"><Link href="/about">About</Link></li>
-      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl transition-all duration-500 rounded shadow hover:bg-indigo-800 shadow-indigo-700">Login</button></li>
+      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl transition-all duration-500 rounded dark:bg-indigo-800">Login</button></li>
       </ul>
     </motion.div>
   </nav>
