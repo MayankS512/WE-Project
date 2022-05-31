@@ -3,6 +3,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { auth, db, provider } from '../firebase/config.js'
 import { useAuthContext } from '../hooks/useAuthContext'
+import { useCollection } from '../hooks/useCollection'
 
 export const useGoogle = () => {
   const [error, setError] = useState(null)
@@ -14,8 +15,9 @@ export const useGoogle = () => {
     signInWithPopup(auth, provider)
     .then(async (res) => {
       const ref = doc(db, 'users', res.user.uid)
-      // check if new user
-      // getDoc(ref)
+      const user = await getDoc(ref)
+      console.log(user)
+      if (user.exists)
       await setDoc(ref, {
         status: true,
         username: res.user.displayName,

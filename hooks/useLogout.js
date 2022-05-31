@@ -7,13 +7,15 @@ export const useLogout = () => {
   const { user, dispatch } = useAuthContext()
 
   const logout = async () => {
-    await signOut(auth)
+    const { uid } = user
+    const ref = doc(db, 'users', uid)
+    await updateDoc(ref, { status: false })
       .then(async () => {
-        const { uid } = user
-        const ref = doc(db, 'users', uid)
-        updateDoc(ref, { status: false })
-        // console.log('User Signed Out');
-        dispatch({ type: 'LOGOUT' })
+        await signOut(auth)
+        .then(async () => {
+          // console.log('User Signed Out');
+          dispatch({ type: 'LOGOUT' })
+        })
       })
       .catch((err) => {
         console.log(err.message)
