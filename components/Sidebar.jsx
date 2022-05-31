@@ -17,7 +17,7 @@ const Sidebar = ({ handleShow }) => {
   }
   
   return (
-    <div id='sidebar' className='text-white absolute flex flex-col w-full h-full max-w-sm overflow-auto md:max-w-xl md:left-0 md:relative bg-neutral-300 dark:bg-zinc-800'>
+    <div id='sidebar' className='absolute flex flex-col w-full h-full max-w-sm overflow-auto text-white md:max-w-xl md:left-0 md:relative bg-neutral-300 dark:bg-zinc-800'>
       <XIcon onClick={handleShow} className='absolute top-0 right-0 z-20 w-10 h-10 p-2 md:hidden'/>
       <UserStatus />
       <Groups />

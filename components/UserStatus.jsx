@@ -10,7 +10,7 @@ const Menu = () => {
   const { join } = useCreateServer()
   const [name, setName] = useState('')
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     if (name !== '') {
       join(name)
     }

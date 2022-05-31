@@ -3,7 +3,6 @@ import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { auth, db, provider } from '../firebase/config.js'
 import { useAuthContext } from '../hooks/useAuthContext'
-// import { useCollection } from '../hooks/useCollection'
 
 export const useGoogle = () => {
   const [error, setError] = useState(null)

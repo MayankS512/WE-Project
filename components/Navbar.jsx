@@ -54,7 +54,7 @@ const Navbar = ({ home, redirect }) => {
       <Rudiment home={home} /> 
       <li className="ml-auto"><Link href="/blog">Blog</Link></li>
       <li><Link href="/about">About</Link></li>
-      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl hover:bg-red-400 transition-all duration-500 rounded bg-red-500 dark:bg-indigo-800">Login</button></li>
+      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl transition-all duration-500 bg-red-500 rounded dark:bg-pink-800 hover:dark:bg-pink-700 hover:bg-red-400 ">Login</button></li>
     </ul>
     
     <ul className="fixed flex items-center w-screen sm:hidden">
@@ -70,7 +70,7 @@ const Navbar = ({ home, redirect }) => {
       <ul className="flex flex-col mt-32 gap-28">
       <li className="text-center"><Link href="/blog">Blog</Link></li>
       <li className="text-center"><Link href="/about">About</Link></li>
-      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl hover:bg-red-400 transition-all duration-500 rounded bg-red-500 dark:bg-indigo-800">Login</button></li>
+      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl transition-all duration-500 bg-red-500 rounded hover:bg-red-400 dark:bg-pink-800 hover:dark:bg-pink-700">Login</button></li>
       </ul>
     </motion.div>
   </nav>

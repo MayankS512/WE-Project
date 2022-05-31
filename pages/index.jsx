@@ -70,10 +70,10 @@ export default function Home() {
           <ChevronRightIcon className='relative w-10 h-10' />
         </div>
         <Sidebar handleShow={handleShow} />
-        {(server && server.last) ? <Dashboard server={server}/> : <div id='messages' className='flex flex-col items-center justify-center w-full h-full col-span-3 overflow-auto text-center md:col-span-2 lg:col-span-3 xl:col-span-4'>
+        {(server && server.last) ? <Dashboard server={server}/> : <div id='messages' className='flex flex-col items-center justify-center w-full h-full col-span-3 overflow-auto text-center md:col-span-2 lg:col-span-4 xl:col-span-5'>
           <h1 className='text-2xl'>Select or Join a Server.</h1>
         </div>} 
-        <Members />
+        {(server && server.last) && <Members server={server}/>}
       </div>}
       {/* <button onClick={logout}>Logout</button> */}
     </>

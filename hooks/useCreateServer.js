@@ -6,27 +6,32 @@ import { useAuthContext } from './useAuthContext.js'
 export const useCreateServer = () => {
   const [error, setError] = useState(null)
   const {user, dispatch, server} = useAuthContext()
+  
+  const { uid } = user
+  const ref2 = doc(db, 'users', uid)
 
   const create = async (name) => {
-    setError(null)
-    // Create User Document
     const ref = collection(db, 'groups')
-    const { uid } = user
-    const ref2 = doc(db, 'users', uid)
+    setError(null)
     await addDoc(ref, {
-      name
-    }).then((res) => {
-      updateDoc(ref2, { last: res.id, servers: arrayUnion(res.id) })
+      name,
+      users: [uid]
+    }).then(async (res) => {
+      await updateDoc(ref2, { last: res.id, servers: arrayUnion(res.id) })
       dispatch({ type: 'SERVER', payload: {last: res.id, servers: [...server.servers, res.id]} })
     })
     .catch((err) => {setError(err.message)})
   }
 
   const join = async (name) => {
-    const { uid } = user
-    const ref2 = doc(db, 'users', uid)
-    updateDoc(ref2, { last: name, servers: arrayUnion(name) })
-    dispatch({ type: 'SERVER', payload: {last: res.id, servers: [...server.servers, res.id]} })
+    const ref = doc(db, 'groups', name)
+    await updateDoc(ref, { 
+      users: arrayUnion(uid) 
+    }).then(async () => {
+      // console.log('started')
+      await updateDoc(ref2, { last: name, servers: arrayUnion(name) })
+      dispatch({ type: 'SERVER', payload: {last: res.id, servers: [...server.servers, res.id]} })
+    }).catch((err) => {setError(err.message)})
   }
 
   return { error, create, join }

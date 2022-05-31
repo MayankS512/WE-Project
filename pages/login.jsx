@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useSignup } from "../hooks/useSignup";
 import { useGoogle } from "../hooks/useGoogle";
 import { useLogin } from "../hooks/useLogin"
-import { ArrowNarrowLeftIcon, ChevronLeftIcon } from "@heroicons/react/solid"
+import { ArrowNarrowLeftIcon } from "@heroicons/react/solid"
 import { useAuthContext } from "../hooks/useAuthContext";
 
 // OPTIOANL: Create a separate reusable modal for login and register.
@@ -32,7 +32,7 @@ const InputField = ({ input, setInput, type = "text", placeholder = "Enter Value
 
 const Button = ({ children, add = "", onClick = () => {}, type = "button" }) => {
   return (
-    <input type={type} onClick={onClick} className={`py-2 mx-10 mt-8 text-white text-xl transition-all duration-300 bg-red-500 dark:bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700 ${add}`} value={children}></input>
+    <input type={type} onClick={onClick} className={`py-2 mx-10 mt-8 text-white text-xl transition-all duration-300 bg-red-500 dark:bg-pink-800 hover:dark:bg-pink-700 rounded shadow-sm dark:focus:bg-pink-700 hover:bg-gray-700 focus:outline-0 focus:bg-gray-700 ${add}`} value={children}></input>
   )
 }
 
