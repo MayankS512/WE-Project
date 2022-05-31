@@ -5,7 +5,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import Dashboard from '../components/Dashboard';
 import Members from '../components/Members';
 import Sidebar from '../components/Sidebar';
-import { db, timestamp } from '../firebase/config';
+import { db } from '../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
@@ -49,14 +49,6 @@ export default function Home() {
       setShow(true)
     }
   }
-  
-  useEffect(() => {
-    fetch('http://worldtimeapi.org/api/ip')
-      .then((res) => {return res.json()})
-      .then((res) => {console.log(timestamp.fromMillis(res.unixtime))})
-      .catch((err) => console.log(err))
-
-  }, [])
 
   useEffect(() => {
     if (authIsReady && !user) router.push('/home')

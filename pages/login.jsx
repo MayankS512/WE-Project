@@ -22,7 +22,7 @@ const InputField = ({ input, setInput, type = "text", placeholder = "Enter Value
         value={input} 
         onChange={(e) => {setInput(e.target.value)}} 
         type={type} 
-        className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50" 
+        className="px-3 py-2 mx-10 mt-8 text-lg text-black rounded-sm focus:outline-offset-4 focus:outline-gray-800 dark:focus:outline-gray-50 selection:text-white placeholder:select-none" 
         placeholder={placeholder} 
       />
       }
@@ -93,7 +93,7 @@ const Login = () => {
   }, [user])
   
   return ( 
-    <div className="absolute top-0 flex items-center justify-center w-full h-full min-h-fit">
+    <div className="absolute top-0 flex items-center justify-center w-full h-full min-h-fit dark:selection:bg-pink-700 selection:bg-red-500">
       <Head>
         <title>Rudiment.</title>
       </Head>
@@ -106,7 +106,7 @@ const Login = () => {
         <h1 className="text-4xl select-none sm:ml-10 sm:text-6xl lg:text-8xl font-Cinzel"><Link href='/home'>Rudiment.</Link></h1>
       </div>
 
-      <form onSubmit={handleSubmit} className="absolute flex flex-col w-full max-w-md text-center top-[29%] mb-10 rounded-md xl:right-80 sm:shadow-lg sm:w-96 dark:sm:bg-neutral-700 sm:bg-zinc-100 shadow-black ">
+      <form onSubmit={handleSubmit} className="absolute flex flex-col w-full max-w-md text-center top-[29%] mb-10 rounded-md xl:right-80 sm:shadow-lg sm:w-96 dark:sm:bg-neutral-700 sm:bg-zinc-100 shadow-black">
         <InputField input={username} setInput={setUsername} placeholder="Username" register={register} />
         <InputField input={email} setInput={setEmail} type="email" placeholder="Email" />
         <InputField input={password} setInput={setPassword} type="password" placeholder="Password" />

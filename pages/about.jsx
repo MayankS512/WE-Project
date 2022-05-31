@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 
 const About = () => {
   return (
-    <div className="w-full h-full overflow-y-hidden ">
+    <div className="w-full h-full overflow-y-hidden dark:selection:bg-pink-700 selection:bg-red-500 ">
       <Head>
         <title>Rudiment.</title>
       </Head>

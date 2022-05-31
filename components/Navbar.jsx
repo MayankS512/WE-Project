@@ -49,7 +49,7 @@ const Navbar = ({ home, redirect }) => {
   const [nav, setNav] = useState(false)
   
   return ( 
-  <nav className="mt-4 mr-5 overflow-hidden text-xl sm:mr-16 sm:mt-10">
+  <nav className="mt-4 mr-5 overflow-hidden text-xl select-none sm:mr-16 sm:mt-10">
     <ul className="items-center hidden sm:flex sm:flex-row sm:gap-16 md:gap-24 lg:gap-32 xl:gap-44">
       <Rudiment home={home} /> 
       <li className="ml-auto"><Link href="/blog">Blog</Link></li>
