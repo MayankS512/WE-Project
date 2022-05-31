@@ -32,7 +32,7 @@ const InputField = ({ input, setInput, type = "text", placeholder = "Enter Value
 
 const Button = ({ children, add = "", onClick = () => {}, type = "button" }) => {
   return (
-    <input type={type} onClick={onClick} className={`py-2 mx-10 mt-8 text-xl transition-all duration-300 bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700 ${add}`} value={children}></input>
+    <input type={type} onClick={onClick} className={`py-2 mx-10 mt-8 text-white text-xl transition-all duration-300 bg-red-500 dark:bg-gray-800 rounded shadow-sm hover:bg-gray-700 focus:outline-0 focus:bg-gray-700 ${add}`} value={children}></input>
   )
 }
 

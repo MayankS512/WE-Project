@@ -54,7 +54,7 @@ const Navbar = ({ home, redirect }) => {
       <Rudiment home={home} /> 
       <li className="ml-auto"><Link href="/blog">Blog</Link></li>
       <li><Link href="/about">About</Link></li>
-      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl transition-all duration-500 rounded dark:bg-indigo-800">Login</button></li>
+      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl hover:bg-red-400 transition-all duration-500 rounded bg-red-500 dark:bg-indigo-800">Login</button></li>
     </ul>
     
     <ul className="fixed flex items-center w-screen sm:hidden">
@@ -65,12 +65,12 @@ const Navbar = ({ home, redirect }) => {
       </li>
     </ul>
 
-    <motion.div variants={sidenavVariants} transition={{ duration: 0.15 }} initial='leave' animate={nav ? 'enter' : 'leave'} className="fixed top-0 z-20 flex flex-col items-center w-screen h-screen overflow-hidden opacity-95 bg-zinc-900 sm:hidden">
+    <motion.div variants={sidenavVariants} transition={{ duration: 0.15 }} initial='leave' animate={nav ? 'enter' : 'leave'} className="fixed top-0 z-20 flex flex-col items-center w-screen h-screen overflow-hidden opacity-95 bg-slate-300 dark:bg-zinc-900 sm:hidden">
       <XIcon className="relative mt-4 ml-auto mr-5" height={40} width={40} onClick={() => setNav(false)}/>
       <ul className="flex flex-col mt-32 gap-28">
       <li className="text-center"><Link href="/blog">Blog</Link></li>
       <li className="text-center"><Link href="/about">About</Link></li>
-      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl transition-all duration-500 rounded dark:bg-indigo-800">Login</button></li>
+      <li><button onClick={() => router.push('/login')} className="px-6 py-2 text-xl hover:bg-red-400 transition-all duration-500 rounded bg-red-500 dark:bg-indigo-800">Login</button></li>
       </ul>
     </motion.div>
   </nav>
