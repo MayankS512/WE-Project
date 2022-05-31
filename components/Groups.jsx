@@ -18,7 +18,7 @@ const Groups = () => {
   return (
     <div className="flex flex-col flex-grow overflow-auto text-black dark:text-white none">
       {documents && documents.map(group => {
-        if (server && server.servers && server.servers.find((server) => server.stringValue === group.id || server === group.id)) {
+        if (server && server.servers && server.servers.find((server) => server === group.id)) {
           return <div onClick={() => handleClick(group.id)} className="py-2 mt-1 text-center cursor-pointer select-none md:text-xl hover:bg-zinc-700" key={group.id}>
           {group.name}
         </div>

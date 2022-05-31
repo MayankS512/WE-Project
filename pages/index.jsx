@@ -5,7 +5,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import Dashboard from '../components/Dashboard';
 import Members from '../components/Members';
 import Sidebar from '../components/Sidebar';
-import { db } from '../firebase/config';
+import { db, timestamp } from '../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
@@ -32,8 +32,8 @@ export default function Home() {
     if (user) {
       const ref = doc(db, 'users', user.uid)
       getDoc(ref).then((res) => {
-        console.log(res._document.data.value.mapValue.fields.servers.arrayValue.values)
-        dispatch({ type: 'SERVER', payload: { last: res._document.data.value.mapValue.fields.last.stringValue, servers: res._document.data.value.mapValue.fields.servers.arrayValue.values } })
+        // console.log(res.data())
+        dispatch({ type: 'SERVER', payload: { last: res.data().last, servers: res.data().servers } })
       }).catch(err=>console.log(err))
     }
   }, [user])
@@ -50,6 +50,13 @@ export default function Home() {
     }
   }
   
+  useEffect(() => {
+    fetch('http://worldtimeapi.org/api/ip')
+      .then((res) => {return res.json()})
+      .then((res) => {console.log(timestamp.fromMillis(res.unixtime))})
+      .catch((err) => console.log(err))
+
+  }, [])
 
   useEffect(() => {
     if (authIsReady && !user) router.push('/home')
