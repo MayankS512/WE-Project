@@ -14,7 +14,7 @@ const Members = () => {
           return user.status && <User key={user.id} user={user} status="dark:bg-zinc-700" />
         })}
         {users && users.map((user) => {
-          return !user.status && <User key={user.id} user={user} status="bg-zinc-700 dark:bg-transparent" />
+          return !user.status && <User key={user.id} user={user} status="text-white bg-zinc-700 dark:bg-transparent" />
         })}
       </div>
     </div>

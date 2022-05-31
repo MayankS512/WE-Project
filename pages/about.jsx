@@ -13,7 +13,7 @@ const About = () => {
       <h1 className="mt-40 text-4xl text-center sm:text-5xl md:text-6xl">
         About
       </h1>
-      <div className="p-10 mx-5 mt-12 rounded-md sm:mx-10 md:mx-20 lg:mx-40 xl:mx-96 opacity-60 bg-neutral-100 dark:bg-zinc-700">
+      <div className="p-10 mx-5 mt-12 rounded-md sm:mx-10 md:mx-20 lg:mx-40 xl:mx-96 opacity-80 bg-neutral-100 dark:bg-zinc-700">
         <h2>Rudiment defines the first, rudimentary steps, into the public.</h2>
       </div>
     </div>

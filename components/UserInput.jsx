@@ -26,7 +26,7 @@ const UserInput = ({ disabled }) => {
   
   return (
     <form onSubmit={handleSubmit} className='flex p-3 m-2 min-h-[3rem] overflow-hidden rounded-md bg-zinc-800'>
-      <input className='flex-grow outline-none dark:text-white bg-zinc-800 placeholder:text-neutral-400 disabled:placeholder:text-neutral-500' type='text' value={input} onChange={(e) => {setInput(e.target.value)}} placeholder="Send Message" disabled={disabled}></input>
+      <input className='flex-grow outline-none text-white bg-zinc-800 placeholder:text-neutral-400 disabled:placeholder:text-neutral-500' type='text' value={input} onChange={(e) => {setInput(e.target.value)}} placeholder="Send Message" disabled={disabled}></input>
       {/* <span className='pl-2 select-none text-zinc-600'>│</span> */}
       {/* <button disabled={disabled} className='px-2 disabled:text-neutral-500 text-neutral-400 hover:text-emerald-400 disabled:hover:text-neutral-500'> <UploadIcon className='relative z-10 w-5 h-5 ' /></button> */}
       {/* <button disabled={disabled} className='px-2 text-neutral-400 hover:text-amber-400 disabled:text-neutral-500 disabled:hover:text-neutral-500'> <EmojiHappyIcon className='relative z-10 w-5 h-5' /></button> */}
