@@ -14,7 +14,7 @@ const UserInput = ({ disabled }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    const time = await fetch('http://worldtimeapi.org/api/ip')
+    const time = await fetch('https://worldtimeapi.org/api/ip')
     .then((res) => {return res.json()})
     .then((res) => {return res.unixtime * 1000})
     .catch((err) => {console.log(err);return Date.now()})
