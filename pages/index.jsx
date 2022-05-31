@@ -52,7 +52,7 @@ export default function Home() {
   
 
   useEffect(() => {
-    if (authIsReady && !user) router.push('/login')
+    if (authIsReady && !user) router.push('/home')
   }, [user, authIsReady])
 
   return (
