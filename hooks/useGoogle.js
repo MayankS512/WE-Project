@@ -1,9 +1,9 @@
 import { signInWithPopup } from 'firebase/auth'
-import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { auth, db, provider } from '../firebase/config.js'
 import { useAuthContext } from '../hooks/useAuthContext'
-import { useCollection } from '../hooks/useCollection'
+// import { useCollection } from '../hooks/useCollection'
 
 export const useGoogle = () => {
   const [error, setError] = useState(null)
@@ -17,11 +17,16 @@ export const useGoogle = () => {
       const ref = doc(db, 'users', res.user.uid)
       const user = await getDoc(ref)
       console.log(user)
-      if (user.exists)
+      if (!user._document)
       await setDoc(ref, {
         status: true,
         username: res.user.displayName,
         avatar: res.user.photoURL,
+        servers: [],
+        last: ''
+      })
+      await updateDoc(ref, {
+        status: true,
       })
       dispatch({ type: 'LOGIN', payload: res.user })
     })
