@@ -2,15 +2,15 @@ lockfileVersion: 5.4
 
 specifiers:
   '@heroicons/react': ^1.0.6
-  '@react-three/drei': ^9.11.3
-  '@react-three/fiber': ^8.0.20
+  '@react-three/drei': ^9.11.2
+  '@react-three/fiber': ^8.0.19
   autoprefixer: ^10.4.7
   eslint: 8.16.0
   eslint-config-next: 12.1.6
   file-loader: ^6.2.0
-  firebase: ^9.8.2
-  framer-motion: ^6.3.6
-  framer-motion-3d: ^6.3.6
+  firebase: ^9.8.1
+  framer-motion: ^6.3.3
+  framer-motion-3d: ^6.3.3
   glsl-shader-loader: ^0.1.6
   next: ^12.1.6
   postcss: ^8.4.14
