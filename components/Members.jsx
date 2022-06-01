@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore"
+import { doc, onSnapshot } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../firebase/config"
 import { useCollection } from "../hooks/useCollection"
@@ -10,10 +10,11 @@ const Members = ({ server }) => {
   const [members, setMemebers] = useState([])
 
   useEffect(() => { 
-    getDoc(ref)
-      .then((res) => {
-        setMemebers(res.data().users)
-      })
+    const unsub = onSnapshot(ref, (res) => {
+      setMemebers(res.data().users)
+    })
+    
+    return () => unsub()
   }, [server])
 
   return (
