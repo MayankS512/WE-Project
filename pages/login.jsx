@@ -114,7 +114,7 @@ const Login = () => {
         <Button type="submit" onClick={handleSubmit}>{register ? "Register" : "Login"}</Button>
         <div className="mt-2" onClick={() => {setRegister(!register)}}>{register ? "Already have an account?" : "Don't have an account?"} <span className="text-blue-600 transition-colors duration-150 cursor-pointer hover:text-blue-400 dark:text-indigo-300 dark:hover:text-indigo-200">{register ? "Login" : "Register"}!</span></div>
         <Button onClick={glogin} add="mb-4">Sign In With Google</Button>
-
+        
         {error && <p className="text-center text-red-500">{error}</p>}
         <div className="mt-4"></div>
       </form>

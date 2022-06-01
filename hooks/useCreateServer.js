@@ -21,6 +21,7 @@ export const useCreateServer = () => {
       dispatch({ type: 'SERVER', payload: {last: res.id, servers: [...server.servers, res.id]} })
     })
     .catch((err) => {setError(err.message)})
+    // location.reload()
   }
 
   const join = async (name) => {
@@ -32,6 +33,8 @@ export const useCreateServer = () => {
       await updateDoc(ref2, { last: name, servers: arrayUnion(name) })
       dispatch({ type: 'SERVER', payload: {last: res.id, servers: [...server.servers, res.id]} })
     }).catch((err) => {setError(err.message)})
+
+    location.reload()
   }
 
   return { error, create, join }
