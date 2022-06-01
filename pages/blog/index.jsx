@@ -1,8 +1,7 @@
 import Head from "next/head";
 import Navbar from "../../components/Navbar";
 
-// Connect with firebase and add some data
-const data = [1, 2, 3, 4]
+// Connect with firebase
 
 const Page = () => {
   return ( 
@@ -19,15 +18,18 @@ const Page = () => {
         <h2>Rudiment defines the first, rudimentary steps, into the public.</h2>
         </div>
       ))} */}
-      <h2 className="p-10 rounded-md opacity-80 bg-neutral-100 dark:bg-zinc-700">
-        Video call feature will be coming soon
-      </h2>
-      <h2 className="p-10 rounded-md opacity-80 bg-neutral-100 dark:bg-zinc-700">
-        screen share feature will be coming soon
-      </h2>
-      <h2 className="p-10 rounded-md opacity-80 bg-neutral-100 dark:bg-zinc-700">
-        file share feature will be coming soon
-      </h2>
+      <div className="p-10 rounded-md opacity-80 bg-neutral-100 dark:bg-zinc-700">
+        <h2 className="text-4xl font-bold">Future Work</h2>
+        <p>Certain features that have become commonplace in chat apps such as File Sharing, Voice Calls, Video Calls, and more are still missing from Rudiment. A lot of our future work will be related to the implementation of these features and fleshing out other, already implemented features, like the group joining process mentioned in the previous post, as well as certain other performance pitfalls.</p>
+      </div>
+      <div className="p-10 rounded-md opacity-80 bg-neutral-100 dark:bg-zinc-700">
+        <h2 className="text-4xl font-bold">First Push</h2>
+        <p>The first working version of Rudiment is finally live with regular chat functionality as well as group functionality, though the process of joining a group can certainly be worked upon further to improve the UX for the users.</p>
+      </div>
+      <div className="p-10 rounded-md opacity-80 bg-neutral-100 dark:bg-zinc-700">
+        <h2 className="text-4xl font-bold">Init</h2>
+        <p>The start of a new, minimal chat app that does not try to do anything more than it is supposed to. The website however, does go above and beyond to attract users and then... inevitably disappoint them with the lack of features...</p>
+      </div>
     </div>
   </div> 
    );
