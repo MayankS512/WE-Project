@@ -14,9 +14,6 @@ const About = () => {
       <h1 className="mt-40 text-4xl text-center sm:text-5xl md:text-6xl">
         About
       </h1>
-      <div className="p-10 mx-5 mt-12 rounded-md sm:mx-10 md:mx-20 lg:mx-40 xl:mx-96 opacity-80 bg-neutral-100 dark:bg-zinc-700">
-        <h2>Rudiment defines the first, rudimentary steps, into the public.</h2>
-      </div>
       <div className="flex p-10 mx-5 mt-12 rounded-md sm:mx-10 md:mx-20 lg:mx-40 xl:mx-96 opacity-80 bg-neutral-100 dark:bg-zinc-700">
         <img style={{height:200, width:300}} src="/rudiment.png"/>
         <h2 className="ml-10 text-justify">
@@ -44,7 +41,7 @@ const About = () => {
         <img style={{height:200, width:300}} src="/rudiment1.png"/>
         {/* <Image src="/rudiment.png" height={927} width={1862}></Image> */}
       </div>
-      <div className="flex p-10 mx-5 mt-12 rounded-md sm:mx-10 md:mx-20 lg:mx-40 xl:mx-96 opacity-80 bg-neutral-100 dark:bg-zinc-700">
+      <div className="flex p-10 mb-12 mx-5 mt-12 rounded-md sm:mx-10 md:mx-20 lg:mx-40 xl:mx-96 opacity-80 bg-neutral-100 dark:bg-zinc-700">
         <img style={{height:200, width:300}} src="/rudiment2.png"/>
         <h2 className="ml-10 text-justify">
         A dark theme displays dark surfaces across the majority of a UI. 
