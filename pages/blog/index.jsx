@@ -6,7 +6,7 @@ const data = [1, 2, 3, 4]
 
 const Page = () => {
   return ( 
-    <div className="absolute top-0 w-full h-full overflow-x-hidden none dark:text-white">
+    <div className="absolute top-0 w-full h-full overflow-x-auto none dark:text-white dark:selection:bg-pink-700 selection:bg-red-500">
     <Head>
       <title>Rudiment.</title>
     </Head>

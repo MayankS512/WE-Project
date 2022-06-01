@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <div className="w-full h-full overflow-y-auto none">
+    <div className="w-full h-full overflow-y-auto none dark:selection:bg-pink-700 selection:bg-red-500 ">
       <Head>
         <title>Rudiment.</title>
       </Head>

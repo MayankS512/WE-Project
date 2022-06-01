@@ -1,17 +1,17 @@
 import Head from 'next/head'
 import { Canvas } from '@react-three/fiber'
-import { Suspense } from 'react'
+// import { Suspense } from 'react'
 import { OrbitControls, Environment, useDetectGPU } from '@react-three/drei'
 import Device from '../three/Device'
 import HomeContent from '../components/HomeContent'
 import { useRef } from 'react'
 
-// Work out some way to use useDetectGPU for lower end devices.
 // Enforce SSG and SSR where necessary
 
 // DONE (Maybe): Optimize Curve for rendering
 // DONE: Add responsiveness to the whole site
-// DONE: Replace GSAP with Framer Motion, EXCEPTION: Original Curve.js which may be needed in future!
+// DONE: Work out some way to use useDetectGPU for lower end devices.
+
 
 export default function Home() {  
   const canvas = useRef()
@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   return (
-    <div ref={canvas} className='w-full h-full'>
+    <div ref={canvas} className='w-full h-full dark:selection:bg-pink-700 selection:bg-red-500'>
       <Head>
         <title>Rudiment.</title>
         <link rel="icon" href="/favicon.ico" />
@@ -37,14 +37,18 @@ export default function Home() {
 
       <HomeContent tryIt={tryIt}/>
 
-      <Suspense fallback={null}>
-        <Canvas className='fixed -z-[1]'> 
-          <pointLight intensity={0.7} position={[-2, 3, -4]} />
-          <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={false} enablePan={false} />
-          <Device leaveIt={leaveIt}/>
-          <Environment preset="city" />
-        </Canvas>
-      </Suspense>
+      {/* <Suspense fallback={null}> */}
+      {/* !useDetectGPU().isMobile ? */}
+      {useDetectGPU().tier > 1 ?
+      <Canvas className='fixed -z-[1]'> 
+        <pointLight intensity={0.7} position={[-2, 3, -4]} />
+        <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={false} enablePan={false} />
+        <Device leaveIt={leaveIt}/>
+        <Environment preset="city" />
+      </Canvas> :
+      <Canvas className='fixed -z-[1]'></Canvas>
+      }
+      {/* </Suspense> */}
     </div>
   )
 }

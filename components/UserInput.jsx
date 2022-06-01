@@ -1,7 +1,7 @@
 import { useState } from 'react'
 // import { EmojiHappyIcon, UploadIcon } from '@heroicons/react/solid'
-import { db, timestamp } from '../firebase/config'
-import { collection, addDoc} from 'firebase/firestore'
+import { db } from '../firebase/config'
+import { collection, addDoc, serverTimestamp} from 'firebase/firestore'
 import { useAuthContext } from '../hooks/useAuthContext'
 
 const UserInput = ({ disabled }) => {
@@ -14,19 +14,19 @@ const UserInput = ({ disabled }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    const time = await fetch('http://worldtimeapi.org/api/ip')
-    .then((res) => {return res.json()})
-    .then((res) => {return res.unixtime * 1000})
-    .catch((err) => {console.log(err);return Date.now()})
+    // const time = await fetch('https://worldtimeapi.org/api/ip')
+    // .then((res) => {return res.json()})
+    // .then((res) => {return res.unixtime * 1000})
+    // .catch((err) => {console.log(err);return Date.now()})
+    // console.log(time);
 
-    console.log(time);
     if (input.length == 0) return
     const container = document.getElementById('messages')
     await addDoc(ref, {
         body: input,
         from: user.displayName,
         avatar: user.photoURL,
-        createdAt: timestamp.fromMillis(time)
+        createdAt: serverTimestamp()
     }).then(() => {container.scrollTop = container.scrollHeight})
     setInput('')
   }

@@ -11,6 +11,7 @@ const Menu = () => {
   const [name, setName] = useState('')
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     if (name !== '') {
       join(name)
     }

@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Groups from './Groups'
 import UserStatus from './UserStatus'
 import { PlusIcon, XIcon } from '@heroicons/react/solid'
 import { useCreateServer } from '../hooks/useCreateServer'
+import { motion } from 'framer-motion'
 
 const Sidebar = ({ handleShow }) => {
   const {create, error} =  useCreateServer()
@@ -11,13 +12,14 @@ const Sidebar = ({ handleShow }) => {
   const [name, setName] = useState('')
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     if (name !== '') {
       create(name)
     }
   }
-  
+
   return (
-    <div id='sidebar' className='absolute flex flex-col w-full h-full max-w-sm overflow-auto text-white md:max-w-xl md:left-0 md:relative bg-neutral-300 dark:bg-zinc-800'>
+    <motion.div id='sidebar' initial={{x: '-100%'}} whileInView={{x: 0}} transition={{type: 'tween'}} className='absolute flex flex-col w-full h-full max-w-sm overflow-auto text-white md:max-w-xl md:left-0 md:relative bg-neutral-300 dark:bg-zinc-800'>
       <XIcon onClick={handleShow} className='absolute top-0 right-0 z-20 w-10 h-10 p-2 md:hidden'/>
       <UserStatus />
       <Groups />
@@ -28,7 +30,7 @@ const Sidebar = ({ handleShow }) => {
         </form>}
         <PlusIcon className="relative z-10 w-7 h-7"/>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
