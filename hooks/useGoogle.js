@@ -15,7 +15,7 @@ export const useGoogle = () => {
     .then(async (res) => {
       const ref = doc(db, 'users', res.user.uid)
       const user = await getDoc(ref)
-      console.log(user)
+      // console.log(user)
       if (!user._document)
       await setDoc(ref, {
         status: true,

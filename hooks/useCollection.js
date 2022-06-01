@@ -22,7 +22,7 @@ export const useCollection = (c = "messages", _q, _w) => {
 
     const unsub = onSnapshot(ref, (snapshot) => {
       let results = []
-      snapshot.docs.forEach(doc => results.push({...doc.data(), id: doc.id, createdAt: doc.createdAt}))
+      snapshot.docs.forEach(doc => results.push({...doc.data(), id: doc.id}))
       setDocuments(results)
     })
 
