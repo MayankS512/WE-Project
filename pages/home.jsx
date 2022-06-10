@@ -18,16 +18,14 @@ export default function Home() {
 
   const tryIt = () => {
     canvas.current.children[1].classList.remove('-z-[1]')
-    canvas.current.children[1].classList.remove('blur-sm')
     canvas.current.children[1].classList.add('z-10')
     canvas.current.children[0].classList.add('blur-sm')
   }
 
   const leaveIt = () => {
-    canvas.current.children[1].classList.remove('z-10','blur-sm')
+    canvas.current.children[1].classList.remove('z-10')
     canvas.current.children[1].classList.add('-z-[1]')
     canvas.current.children[0].classList.remove('blur-sm')
-    canvas.current.children[1].classList.add('blur-sm')
   }
 
   return (
