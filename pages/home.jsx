@@ -18,6 +18,7 @@ export default function Home() {
 
   const tryIt = () => {
     canvas.current.children[1].classList.remove('-z-[1]')
+    canvas.current.children[1].classList.remove('blur-sm')
     canvas.current.children[1].classList.add('z-10')
     canvas.current.children[0].classList.add('blur-sm')
   }
@@ -26,6 +27,7 @@ export default function Home() {
     canvas.current.children[1].classList.remove('z-10')
     canvas.current.children[1].classList.add('-z-[1]')
     canvas.current.children[0].classList.remove('blur-sm')
+    canvas.current.children[1].classList.add('blur-sm')
   }
 
   return (
@@ -40,13 +42,15 @@ export default function Home() {
       {/* <Suspense fallback={null}> */}
       {/* !useDetectGPU().isMobile ? */}
       {useDetectGPU().tier > 1 ?
-      <Canvas className='fixed -z-[1]'> 
-        <pointLight intensity={0.7} position={[-2, 3, -4]} />
-        <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={false} enablePan={false} />
-        <Device leaveIt={leaveIt}/>
-        <Environment preset="city" />
-      </Canvas> :
-      <Canvas className='fixed -z-[1]'></Canvas>
+      <div className='fixed -z-[1] blur-sm inset-0'>
+        <Canvas className=''> 
+            <pointLight intensity={0.7} position={[-2, 3, -4]} />
+            <OrbitControls maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2} enableZoom={false} enablePan={false} />
+            <Device leaveIt={leaveIt}/>
+            <Environment preset="city" />
+        </Canvas>
+      </div> :
+        <Canvas className='fixed -z-[1]'></Canvas>
       }
       {/* </Suspense> */}
     </div>
