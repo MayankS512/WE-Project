@@ -12,9 +12,9 @@ const screenVariants = {
     rotateX: 0,
     rotateY: 0,
     rotateZ: 0,
-    scaleX: 1.24,
-    scaleY: 0.04,
-    scaleZ: 1.77,
+    scaleX: 1.50,
+    scaleY: 0.07,
+    scaleZ: 2.1,
   },
   laptop: {
     x: 1.24,
@@ -23,9 +23,9 @@ const screenVariants = {
     rotateX: 0,
     rotateY: 0,
     rotateZ: -1.92,
-    scaleX: 1.24,
-    scaleY: 0.04,
-    scaleZ: 1.77,
+    scaleX: 1.50,
+    scaleY: 0.07,
+    scaleZ: 2.1,
   },
   tablet: {
     x: 0,
@@ -35,8 +35,8 @@ const screenVariants = {
   },
   phone: {
     x: 0,
-    scaleX: 0.62 * 1.24,
-    scaleZ: 0.2 * 1.77,
+    scaleX: 1 * 1.24,
+    scaleZ: 0.35 * 1.77,
     rotateZ: -Math.PI/2,
   }
 }
@@ -46,17 +46,17 @@ const keyboardVariants = {
     x: 1.24,
     y: 0,
     z: 0,
-    scaleX: 1.24,
-    scaleY: 0.04,
-    scaleZ: 1.77
+    scaleX: 1.2,
+    scaleY: 0.07,
+    scaleZ: 2.1
   },
   laptop: {
     x: 1.24,
     y: 0,
     z: 0,
-    scaleX: 1.24,
-    scaleY: 0.04,
-    scaleZ: 1.77
+    scaleX: 1.2,
+    scaleY: 0.07,
+    scaleZ: 2.1
   },
   tablet: {
     x: 0,
@@ -90,8 +90,8 @@ const deviceVariants = {
     height: 710,
   },
   phone: {
-    width: 375,
-    height: 725
+    width: 370,
+    height: 750
   }
 }
 
@@ -99,29 +99,13 @@ const deviceVariants = {
 // DONE: Switch to framer motion
 // Could try to add glare somehow...
 
-export default function Device({ leaveIt, ...props }) {
-  const [deviceState, setDeviceState] = useState('laptop')
+export default function Device({deviceState, setDeviceState, handleChange, ...props }) {
   const [startup, setStartup] = useState(true)
   const group = useRef()
   const screen = useRef()
   const { nodes, materials } = useGLTF('/device.glb')
 
-  const handleChange = () => {
-    switch(deviceState) {
-      case 'laptop': 
-        setDeviceState('tablet')
-        break
-      case 'tablet':
-        setDeviceState('phone')
-        break
-      case 'phone':
-        setDeviceState('laptop')
-        break
-      default:
-        setDeviceState('laptop')
-        break
-    }
-  }
+  
 
   useEffect(() => {
     const s = screen.current.children[0]
@@ -155,9 +139,9 @@ export default function Device({ leaveIt, ...props }) {
   })
 
   return (
+    <>
     <motion.group 
       ref={group} 
-      onClick={handleChange} 
       initial={{
         scale: 0,
         // rotateY: 5,
@@ -172,7 +156,7 @@ export default function Device({ leaveIt, ...props }) {
         duration: 2,
         delay: 1
       }}
-      onPointerMissed={() => {leaveIt()}} 
+    //   onPointerMissed={() => {leaveIt()}} 
       dispose={null}
       {...props} 
     >
@@ -204,9 +188,11 @@ export default function Device({ leaveIt, ...props }) {
             animate={deviceState}
             src="https://rudiment.vercel.app/login" 
           />
+          
         </Html>
       </motion.mesh>
     </motion.group>
+    </>
   )
 }
 
