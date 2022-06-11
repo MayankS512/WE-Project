@@ -99,29 +99,13 @@ const deviceVariants = {
 // DONE: Switch to framer motion
 // Could try to add glare somehow...
 
-export default function Device({ leaveIt, ...props }) {
-  const [deviceState, setDeviceState] = useState('laptop')
+export default function Device({deviceState, setDeviceState, handleChange, ...props }) {
   const [startup, setStartup] = useState(true)
   const group = useRef()
   const screen = useRef()
   const { nodes, materials } = useGLTF('/device.glb')
 
-  const handleChange = () => {
-    switch(deviceState) {
-      case 'laptop': 
-        setDeviceState('tablet')
-        break
-      case 'tablet':
-        setDeviceState('phone')
-        break
-      case 'phone':
-        setDeviceState('laptop')
-        break
-      default:
-        setDeviceState('laptop')
-        break
-    }
-  }
+  
 
   useEffect(() => {
     const s = screen.current.children[0]
@@ -158,7 +142,6 @@ export default function Device({ leaveIt, ...props }) {
     <>
     <motion.group 
       ref={group} 
-      onClick={handleChange} 
       initial={{
         scale: 0,
         // rotateY: 5,
@@ -173,7 +156,7 @@ export default function Device({ leaveIt, ...props }) {
         duration: 2,
         delay: 1
       }}
-      onPointerMissed={() => {leaveIt()}} 
+    //   onPointerMissed={() => {leaveIt()}} 
       dispose={null}
       {...props} 
     >
