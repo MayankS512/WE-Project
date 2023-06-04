@@ -9,8 +9,6 @@ import { useLogin } from "../hooks/useLogin"
 import { ArrowNarrowLeftIcon } from "@heroicons/react/solid"
 import { useAuthContext } from "../hooks/useAuthContext";
 
-// OPTIOANL: Create a separate reusable modal for login and register.
-
 const InputField = ({ input, setInput, type = "text", placeholder = "Enter Value", register = true }) => {
   return (
     <>

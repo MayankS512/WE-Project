@@ -9,19 +9,15 @@ import { db } from '../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
-// DONE: Work out responsiveness and add a loading screen
-// DONE: Implement groups / chatrooms
-// Implement user profile
-// Implement user settings
-// Implement user notifications
-// Implement user search
-
 // OPTIONAL
 // Implement file sharing
 // Implement voice calls
 // Implement video calls
 // Implement screenshare
-
+// Implement user profile
+// Implement user settings
+// Implement user notifications
+// Implement user search
 
 export default function Home() {
   const router = useRouter()
